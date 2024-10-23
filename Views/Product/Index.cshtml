@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CRUDWithRepository.Core.Product>;
+@{
+    
+    ViewData["Title"] = "Products List";
+
+}
+
+<h3>@ViewData["Title"]</h3>
+<hr>
+<table>
+    <thead class="table table-responsive table-bordered table-hover">
+        <tr class="table-active">
+            <th>
+                @Html.DisplayNameFor(Model => Model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.Qty)
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if(Model != null && Model.Any())
+        {
+            @foreach(var products in Model)
+            {
+                <tr>
+                    <td> @products.Id </td>
+                    <td> @products.ProductName </td>
+                    <td> @products.Price </td>
+                    <td> @products.Qty </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">
+                    <div>There's no Record to Display!</div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
