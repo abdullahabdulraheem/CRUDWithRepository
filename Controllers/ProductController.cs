@@ -27,15 +27,23 @@ namespace CRUDWithRepository.UI.Controllers
         [HttpPost]
         public async Task<ActionResult> Create(Product model)
         {
-            if(ModelState.IsValid)
+            try
             {
-                await _productRepository.Add(model);
-                return RedirectToAction(nameof(Index));
+                if(ModelState.IsValid)
+                {
+                    await _productRepository.Add(model);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    TempData["ErrorMessage"] = "Model State is invalid";
+                    return View();
+                }
             }
-            else
+            catch(Exception ex)
             {
-                TempData["ErrorMessage"] = "Model State is invalid";
-                return View();dg
+                TempData["ErrorMessage"] = ex.Message;
+                return View();
             }
         }
     }
