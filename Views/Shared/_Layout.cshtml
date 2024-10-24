@@ -35,6 +35,20 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            @if(TempData["successMessage"] != null)
+            {
+                <div class="alert alert-succes">
+                    <b>Success: </b>@TempData["successMessage"]
+                    <button type="button" class="btn btn-close float-end" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if(TempData["errorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    <b>Success: </b>@TempData["successMessage"]
+                    <button type="button" class="btn btn-close float-end" data-bs-dismiss="alert"></button>
+                </div>
+            }
             @RenderBody()
         </main>
     </div>

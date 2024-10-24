@@ -32,11 +32,12 @@ namespace CRUDWithRepository.UI.Controllers
                 if(ModelState.IsValid)
                 {
                     await _productRepository.Add(model);
+                    TempData["successMessage"] = "Product added successfully";
                     return RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Model State is invalid";
+                    TempData["errorMessage"] = "Model State is invalid";
                     return View();
                 }
             }
